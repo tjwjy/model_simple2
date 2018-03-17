@@ -10,7 +10,7 @@ def cal_ssi_fromSeries(series1):
 
 def cal_CPC(path):
     od_dataframe=pd.read_csv(path)
-    od_dataframe['flux']+=0
+    # od_dataframe=od_dataframe[od_dataframe['flux']>1000]
     od_dataframe['model_value_scale']=od_dataframe['model_value_scale']
     od_dataframe['gra_flux']=od_dataframe['gra_flux']
     series_value=od_dataframe[['model_value_scale','flux']]
@@ -23,4 +23,4 @@ def cal_CPC(path):
 
     print (pearsonr(od_dataframe['gra_flux'],od_dataframe['flux']),spearmanr(od_dataframe['gra_flux'],od_dataframe['flux']))
     print ('OK')
-cal_CPC('D:\\data_test\\shanghai\\rank\\modelR1_3000_exp1.31.csv')
+cal_CPC(r'D:\data_test\shanghai\new\rank\modelR1_3000_rank1.59.csv')

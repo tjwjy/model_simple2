@@ -60,7 +60,6 @@ def dis_func3(dataframe):
                 continue
         except:
             pass
-
         temp_dfO=df[df['O_id']==O]
         temp_df=temp_dfO[temp_dfO['dis']<dis]
         s=temp_df.shape[0]+1
@@ -100,7 +99,7 @@ def run(path='D:\\beijing1000\\beijing01000grid.csv',pathod='D:\\beijing1000\\be
     ##the disput of population
     args_model = [0.6, -0.21]
     args_time = [2, 1]
-    args_steps = [1.31]
+    args_steps = [1.278]
     gama = 1
     time1=time.localtime()
     path=path
@@ -133,11 +132,11 @@ def run(path='D:\\beijing1000\\beijing01000grid.csv',pathod='D:\\beijing1000\\be
     getmon=str(time1.tm_mon)
     getday=str(time1.tm_mday)
     gethour=str(time1.tm_hour)
-    temp_path='D:\\modelR'+str(gama)+'_'+str(people_num)+"_"+getmon+getday+gethour
+    temp_path='D:\\modelRChangsha'+str(gama)+'_'+str(people_num)+"_"+getmon+getday+gethour
     for i in range(0,people_num):
     #model=Model5.HomeOrWork_Model(args_model=args_model,args_t=args_time,args_steps=args_steps,environment=Envir,visited_Place=[],homeposition=random.choice(Envir.locations),workposition=random.choice(Envir.locations))
         model=agent2.Nomal_Individual(args_model=args_model,args_t=args_time,args_step=args_steps,simulate_time=simulate_time,environment=Envir)
-        model.simulate_home_repeat1()
+        model.simulate_home_repeat2()
         mid=model.data_mid
         mid.person_tag = i
         write = IO.IO(mid)

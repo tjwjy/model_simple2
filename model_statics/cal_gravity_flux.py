@@ -3,7 +3,7 @@ import sklearn.linear_model as line_model
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-def cal_gra_args(path='D:\\modelR1_3000_12815+.csv'):
+def cal_gra_args(path=r'D:\modelRChangsha1_30000_3715+.csv'):
     temp_path=path
     df=pd.read_csv(temp_path)
     df=df.fillna(0)

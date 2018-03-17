@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 import seaborn as sbn
 from sklearn.linear_model import LinearRegression
 def draw_regression(path,attribute,bias):
+    colorList = ['#c23531', '#2f4554', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074',
+             '#546570', '#c4ccd3']
     od_df=pd.read_csv(path)
     # od_df=od_df[od_df['flux1']!=0]
     od_df['flux']+=bias
@@ -12,10 +14,10 @@ def draw_regression(path,attribute,bias):
 
     ##__ draw points of (real,predict) as the background______________________________________________________________
     temp_df=od_df.sample(5000)
-    ax=plt.scatter(x=temp_df['flux'],y=temp_df[attribute],c='darkgray',s=10)
+    ax=plt.scatter(x=temp_df['flux'],y=temp_df[attribute],c='darkgray',alpha=.5,s=10)
 
     ##__draw hist with power_law wei_________________________________________________________________________________
-    bin_num=30
+    bin_num=20
     min1=0
     interval=math.log(100000,10)
     interval_list=np.linspace(0,interval,bin_num,endpoint=True)
@@ -29,7 +31,7 @@ def draw_regression(path,attribute,bias):
     box_position=0.5*(interval_list[1:]+interval_list[:-1])
     box_position=[math.pow(10,i)+min1 for i in box_position]
 
-    bp=plt.boxplot(x=box_value[1:],positions=box_position[0:],widths=[i *.25 for i in interval_list2[1:]],whis=[10,91],sym='')
+    bp=plt.boxplot(x=box_value[1:],positions=box_position[0:],widths=[i *.35 for i in interval_list2[1:]],whis=[10,91],sym='')
     for index,box in enumerate(bp['boxes']):
         whisker=bp['whiskers']
         median=bp['medians']
@@ -44,7 +46,8 @@ def draw_regression(path,attribute,bias):
                 median[index].set(color='white', linewidth=1.5)
             else:
                 if(box_position[index]>cap[index*2+1]._y[0] or box_position[index]<cap[index*2]._y[0]):
-                    color='orangered'
+                    # color='orangered'
+                    color=colorList[0]
                     box.set(color=color,linewidth=1.5)
                     cap[index*2].set(color=color, linewidth=1.5)
                     cap[index*2+1].set(color=color, linewidth=1.5)
@@ -52,7 +55,8 @@ def draw_regression(path,attribute,bias):
                     whisker[index * 2 ].set(color=color, linewidth=1.5)
                     median[index].set(color=color, linewidth=1.5)
                 else:
-                    color='#009688'
+                    # color='#009688'
+                    color=colorList[1]
                     box.set(color=color,linewidth=1.5)
                     cap[index*2].set(color=color, linewidth=1.5)
                     cap[index*2+1].set(color=color, linewidth=1.5)
@@ -88,4 +92,4 @@ def draw_regression(path,attribute,bias):
     plt.ylabel('Travels(model)')
     plt.savefig('D:\\fig.png',dpi=200)
     plt.show()
-draw_regression(r'D:\data_test\shanghai\new\rank\modelR1_3000_rank1.59.csv',attribute='model_value_scale',bias=1)
+draw_regression(r'D:\modelSSh1_3000_31719+.csv',attribute='model_value_scale',bias=1)

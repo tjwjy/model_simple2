@@ -134,7 +134,7 @@ def read_txt_tocsv(path,csv_path):
     # csv_df['model_value']=df['value']
     # csv_df=csv_df.fillna(0)
     # scale2=math.log(csv_df['flux'].mean()/csv_df['model_value'].mean())
-    scale=allod['flux'].mean()/allod['model_value'].mean()
+    scale=allod['flux'].sum()/allod['model_value'].sum()
     print ('scale is '+str(scale))
     allod['model_value_scale']=allod['model_value']*scale
     allod.to_csv(path+'.csv')
@@ -177,4 +177,4 @@ def read_txt_tocsv24(path,csv_path):
     df=df.set_index(keys=['O_id','D_id'])
     df.to_csv(path+'24'+'.csv')
     print ('OK')
-read_txt_tocsv(path='D:\\modelR1_3000_12917+.txt',csv_path='E:\\data\\taxidata\\shanghai.csv')
+read_txt_tocsv(path=r'D:\modelSSh1_3000_31719+.txt',csv_path='E:\\data\\taxidata\\shanghai.csv')

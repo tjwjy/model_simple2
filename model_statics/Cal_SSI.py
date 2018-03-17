@@ -24,4 +24,4 @@ def cal_SSI(path):
 
     print (pearsonr(od_dataframe['gra_flux'],od_dataframe['flux']),spearmanr(od_dataframe['gra_flux'],od_dataframe['flux']))
     print ('OK')
-cal_SSI('D:\\data_test\\shanghai\\rank\\modelR1_3000_exp1.31.csv')
+cal_SSI(r'D:\data_test\shanghai\new\rank\modelR1_30000_rank1.289.csv')

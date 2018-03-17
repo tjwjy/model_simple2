@@ -29,7 +29,7 @@ def cal_PWO2(dataframe):
     df['rank']=df1['rank']
     return df
 
-path=r'D:\data_test\shanghai\new\rank\modelR1_3000_rank1.59.csv'
+path=r'D:\data_test\changsha\new\rank\modelR_3000_rank1.280.csv'
 df=pd.read_csv(path)
 df=cal_PWO2(df)
 df['flux']=df['flux']/(df['O_N']*df['D_N'])
@@ -40,7 +40,7 @@ rankflux=rankflux/(rankflux.min() if rankflux.min()!=0 else rankflux.mean()/100)
 ranklist=[]
 for i in range(min(rankflux.index),rankflux.shape[0]+1):
     for item in range(0,int(rankflux[i])):
-        ranklist.append(i+1)
+        ranklist.append(i)
 fit=powerlaw.Fit(ranklist,discrete=True,xmin=1)
 ax=fit.plot_pdf(color=color1.get_color(0),original_data=True)
 fit.power_law.plot_pdf(ax=ax,color=color1.get_color(1))
@@ -49,7 +49,7 @@ position=0.5*(bins[1:]+bins[:-1])
 plt.scatter(position,pdf,color=color1.get_color(0))
 print(fit.alpha,fit.sigma,fit.xmin)
 x=np.linspace(1,1000,10000)
-# plt.plot(x,x**-1.295)
+# plt.plot(x,x**-1.30)
 plt.xscale('log')
 plt.yscale('log')
 plt.savefig('D:\\rankdistribution.png',dpi=200)
